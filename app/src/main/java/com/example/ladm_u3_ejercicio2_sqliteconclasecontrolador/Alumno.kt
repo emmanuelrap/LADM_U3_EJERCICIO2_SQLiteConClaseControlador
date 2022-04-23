@@ -7,11 +7,12 @@ class Alumno(act:MainActivity) {
     var noControl=""
     var nombre=""
     var carrera=""
-    var act=act
-    var err=""
+    private var act=act
+    private var err=""
 
     fun insertar():Boolean{
         var baseDatos = BaseDatos(act,"escuela",null,1)
+        err=""
         try{
             val tabla = baseDatos.writableDatabase
             var datos = ContentValues()
@@ -36,6 +37,8 @@ class Alumno(act:MainActivity) {
     fun mostrarTodos() :ArrayList<Alumno>{
         var baseDatos = BaseDatos(act,"escuela",null,1)
         var arreglo = ArrayList<Alumno>()
+        err=""
+
         try{
             var tabla = baseDatos.readableDatabase
             var SQL_SELECT ="SELECT * FROM ALUMNO"
@@ -52,18 +55,36 @@ class Alumno(act:MainActivity) {
             }
 
          }catch(err:SQLiteException){
-
+            this.err=err.message!!
          }finally {
-//aquiiii
+            baseDatos.close()
          }
+        return arreglo
     }
-}
 
+    fun mostrarAlumno(noControlBuscar:String) :Alumno{
+        var baseDatos = BaseDatos(act,"escuela",null,1)
+        val alumno = Alumno(act)
+        err=""
 
-/*
- var baseDatos = BaseDatos(act,"escuela",null,1)
         try{
+            var tabla = baseDatos.readableDatabase
+            var SQL_SELECT ="SELECT * FROM ALUMNO WHERE NOCONTROL=?"
+            var cursor = tabla.rawQuery(SQL_SELECT, arrayOf(noControlBuscar))
+
+            if (cursor.moveToFirst()){
+
+                    alumno.noControl=cursor.getString(0)
+                    alumno.nombre=cursor.getString(1)
+                    alumno.carrera=cursor.getString(2)
 
             }
-        }catch(err:SQLiteException){}
-* */
+
+        }catch(err:SQLiteException){
+            this.err=err.message!!
+        }finally {
+            baseDatos.close()
+        }
+        return alumno
+    }
+}

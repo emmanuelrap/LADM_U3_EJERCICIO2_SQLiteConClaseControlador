@@ -7,15 +7,15 @@ import android.database.sqlite.SQLiteOpenHelper
 class BaseDatos(
     context: Context?,
     name: String?,
-    factory: SQLiteDatabase.CursorFactory?,c
+    factory: SQLiteDatabase.CursorFactory?,
     version: Int
 ) : SQLiteOpenHelper(context, name, factory, version) {
-    override fun onCreate(db: SQLiteDatabase?) {
-       db.execSQL("CREATE TABLE ALUMNO MATRICULA (NO_CNOVARCHAR(10), PRIMARY KEY NOT NULL, NOMBRE VARCHAR(200), CARRERA VARCHAR(50)) ")
+    override fun onCreate(db: SQLiteDatabase) {
+       db.execSQL("CREATE TABLE ALUMNO (NOCONTROL VARCHAR(10) PRIMARY KEY NOT NULL, NOMBRE VARCHAR(200),CARRERA VARCHAR(50))")
     }
 
-    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-
-
+    override fun onUpgrade(db: SQLiteDatabase, p1: Int, p2: Int) {
+        TODO("Not yet implemented")
     }
-}fg
+
+}
