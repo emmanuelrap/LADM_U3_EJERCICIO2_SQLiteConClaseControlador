@@ -6,13 +6,9 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity2">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="No. Control"
-        android:id="@+id/etNoControl"></EditText>
+
 
     <EditText
         android:layout_width="match_parent"
@@ -29,15 +25,14 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Insertar"
-        android:id="@+id/btInsertar"></Button>
-    
-    <ListView
+        android:text="Actualizar"
+        android:id="@+id/btActualizar"></Button>
 
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_marginTop="30dp"
-        android:id="@+id/lv"></ListView>
+        android:text="Regresar"
+        android:id="@+id/btRegresar"></Button>
 
 
 
